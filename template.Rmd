@@ -1,0 +1,166 @@
+---
+title: "Simple document"
+author: Lydia Parr  
+date: 9/16/21
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+#table of contents added with code abv, collapse code, can also do pdf 
+#better not to do word because not editable 
+#rmd is preferable for writng, use them for hw, can also do output for github
+
+```{r}
+library(tidyverse)
+```
+
+
+##knitting will print--- also knitting will show errors, so do it frequently
+## because it creates new r session 
+
+I'm an R Markdown document! (notice this part just looks like text
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+(abvfromatting does bolding and italics respectively)
+(below 3 backtics and a curly bracket for r code- it'll be in a chunk
+
+```{r}
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+(you can put everything in the same place and it'll all work-- calculations
+are included in the html file)
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+# Section 3 
+
+Let's write a new code code (option+command+i instead of backticks for hotkeys)
+(name code chunk, the text after r to help make troubleshooting easier)
+
+options for code chunks to put in brackets after r {r}
+eval = FALSE: code will be displayed but not executed; results are not included.
+echo = FALSE: code will be executed but not displayed; results are included.
+include = FALSE: code won’t be executed or displayed.
+message = FALSE and warning = FALSE: prevents messages and warnings from being displayed.
+results = hide and fig.show = hide: prevents results and figures from being shown, respectively.
+collapse = TRUE: output will be collapsed into a single block at shown at the end of the chunk.
+error: errors in code will stop rendering when FALSE; errors in code will be printed in the doc when TRUE. The default is FALSE and you should almost never change it.
+
+This code chunk imports the 'tidyverse' package, creates a dataframe, and 
+makes a histogram.
+
+
+(could also load tidyverse in earlier code chunk and it'd be available early on
+first code chunk ideally would load all packages/libraries you'll need to use)
+
+```{r new_code_chunk}
+
+
+
+##once files are in the same folder : create a new project, thing called project saves trouble
+# use a folder on computer as an existing directory 
+
+#also make sure what's inside tibble is reffed in 
+#the line of code you save
+
+plot_df = 
+  tibble(
+    x = rnorm(1000, sd = .5),
+    y = 1 + 2 * x + rnorm(1000)
+  )
+
+
+plot_df = 
+  tibble(
+    x = rnorm(1000, sd = .5),
+    y = 1 + 2 * x + rnorm(1000)
+  )
+
+
+plot_df ##kind of thing you can just put in console 
+
+ggplot(plot_df, aes(x = x)) + geom_histogram()
+##abv, made plot, told it x goes on x axis 
+# ggplot was told to only look inside the plot 
+#dataframe for the variables
+## below, scatter not histo, x goes on x y goes on y
+
+```
+
+not everything will go into console-- run chunks individually by highlighting
+and executing in console as if using an r script
+
+Learning assessment 
+```{r learning}
+
+?rnorm##(to check what it does)
+#remember to google and use the r search function
+#okay to copu and paste if you understand what you're doing too 
+
+#Write a named code chunk that creates a dataframe comprised of: a numeric variable containing a random sample of size 500 from a normal variable with mean 1; a logical vector indicating whether each sampled value is greater than zero; and a numeric vector containing the absolute value of each element. Then, produce a histogram of the absolute value variable just created. 
+
+library(tidyverse)
+set.seed(12)
+
+learning_df = 
+  tibble(
+    sample = rnorm(500, mean = 1),
+    gr_than_0 = sample > 0,
+    abs_val = abs(sample)
+  )
+
+ggplot(learning_df, aes(x = abs_val)) + geom_histogram()
+```
+ormatting text
+There are a huge number of ways to format your documents. The overview below is essentially copied from R for Data Science; a link to a handy cheatsheet is below.
+
+Text formatting 
+------------------------------------------------------------
+
+*italic*  or  _italic_
+**bold**  or  __bold__
+`code`
+superscript^2^ and subscript~2~
+
+
+Headings
+------------------------------------------------------------
+
+# 1st Level Header
+
+## 2nd Level Header
+
+### 3rd Level Header
+
+
+Lists
+------------------------------------------------------------
+
+*   Bulleted list item 1
+
+*   Item 2
+
+    * Item 2a
+
+    * Item 2b
+
+1.  Numbered list item 1
+
+1.  Item 2. The numbers are incremented automatically in the output.
+
+
+Tables 
+------------------------------------------------------------
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
