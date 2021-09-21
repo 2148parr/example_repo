@@ -3,10 +3,7 @@ title: "Simple document"
 author: Lydia Parr  
 date: 9/16/21
 output: 
-  html_document: 
-    toc: true
-    toc_float: true
-    code_folding: hide
+  github_document
 ---
 #table of contents added with code abv, collapse code, can also do pdf 
 #better not to do word because not editable 
